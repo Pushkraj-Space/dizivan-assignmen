@@ -6,6 +6,7 @@ import AdminSideBar from "./Components/AdminSideBar/AdminSideBar.jsx";
 import AdminDashboard from "./Admin/AdminDashboard/AdminDashboard.jsx";
 import AdminNav from "./Components/AdminNav/AdminNav.jsx";
 import AdminOrders from "./Admin/AdminOrders/AdminOrders.jsx";
+import Feedback from './pages/feedback.jsx';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <AdminNav />
         </AdminLayout>
       <Routes>
+        <Route path='/feedback-form' element = {<Feedback/>}/>
         <Route path="/" element={ <AdminDashboard /> } />
         <Route path="/orders" element={ <AdminOrders /> } />
       </Routes>

@@ -2,16 +2,11 @@ import { useEffect, useState } from "react";
 import styles from "./AdminOrders.module.css";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
-import {
-  convertToTitleCaseFromUnderscores,
-  formatDate,
-} from "../../utils/utils";
 import { Skeleton } from "@mui/material";
-import OrderDetails from "../../Components/OrderDetails/OrderDetails";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentScreen } from "../../features/admin/adminSlice";
+import { formatDate } from "../../utils/utils";
 
-// const URL = "http://localhost:5000/api/v1";
 const URL = `${import.meta.env.VITE_APP_API_URL}/api`;
 
 function AdminOrders() {
@@ -22,8 +17,6 @@ function AdminOrders() {
   const [data, setData] = useState(null);
   const [num, setNum] = useState(0);
   const [startPagination, setStartPagination] = useState(1);
-  const [showOrdersPage, setShowOrdersPage] = useState(false);
-  const [order, setOrder] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
   const [lastPage, setLastPage] = useState(false);
   const dispatch = useDispatch();
@@ -54,16 +47,9 @@ function AdminOrders() {
     let test;
 
     axios
-      .get(
-        `${URL}/admin/all-orders?page=${selected}&status=${selectedOption}`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
-          },
-        }
-      )
+      .get(`${URL}/form/all?page=${selected}&status=${selectedOption}`)
       .then((res) => {
-        setData(res.data.getOrderDetails);
+        setData(res.data.payload);
         setNum(Math.ceil(res.data.total / 8));
         setLoading(false);
       })
@@ -108,23 +94,18 @@ function AdminOrders() {
   };
 
   const changePagination = (val) => {
+    if(num/10 < 5 && val > 0){
+      val = Math.floor((num/10)) + 2
+    }
     const temp = startPagination + val;
 
     setStartPagination(temp);
     handleTableData(temp);
   };
 
-  const handleOrder = (obj) => {
-    setOrder(obj);
-    setShowOrdersPage(true);
-  };
-
   return (
     <div className={styles.container}>
-      {showOrdersPage ? (
-        <OrderDetails order={order} setShowOrdersPage={setShowOrdersPage} />
-      ) : (
-        <>
+       <>
           <div className={styles.operations}>
             <div>
               <div>
@@ -142,9 +123,6 @@ function AdminOrders() {
               </select>
             </div>
             <div className={styles.rightBox}>
-              {/* <div className={styles.createOrder}>
-                <p><a href="https://app-dev.bharatgo.com">Add Feedback</a></p>
-              </div> */}
             </div>
           </div>
           <div className={styles.columnHeading}>
@@ -169,6 +147,9 @@ function AdminOrders() {
             <div>
               <p>Product Service Name</p>
             </div>
+            <div>
+              <p>Date</p>
+            </div>
           </div>
           <div className={styles.main}>
             {loading ? (
@@ -188,15 +169,16 @@ function AdminOrders() {
               <>
                 {data?.map((elem) => (
                   <div key={elem.id} className={styles.rowBox}>
-                    <p onClick={() => handleOrder(elem)}>{elem.id}</p>
-                    <p>{formatDate(elem.order_date)}</p>
-                    <p>{elem.vendorsDetails.bharatgo_unique_id}</p>
-                    <p>{elem.revcivers_name}</p>
-                    <p>{convertToTitleCaseFromUnderscores(elem.order_type)}</p>
+                    <p>{elem.id}</p>
+                    <p>{elem.name}</p>
+                    <p>{elem.mobile}</p>
+                    <p>{elem.email}</p>
+                    <p>{elem.feedback_type}</p>
                     <p>
-                      {convertToTitleCaseFromUnderscores(elem.payment_mode)}
+                      {elem.feedback_details}
                     </p>
-                    <p>{convertToTitleCaseFromUnderscores(elem.status)}</p>
+                    <p>{elem.product_service_name}</p>
+                    <p>{formatDate(elem.created_on)}</p>
                   </div>
                 ))}
               </>
@@ -222,7 +204,6 @@ function AdminOrders() {
             )}
           </div>
         </>
-      )}
     </div>
   );
 }

@@ -11,7 +11,20 @@ const URL = `${import.meta.env.VITE_APP_API_URL}/api`;
 function AdminDashboard() {
   const [searchParams, setSearchParams] = useSearchParams({});
   const [selected, setSelected] = useState("today");
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([
+    {
+      feedback_type : "No records",
+      count : 0
+    },
+    {
+      feedback_type : "No records",
+      count : 0
+    },
+    {
+      feedback_type : "No records",
+      count : 0
+    }
+  ]);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const { filter } = useSelector((state) => state.admin);
@@ -42,6 +55,7 @@ function AdminDashboard() {
     axios
       .get(url)
       .then((res) => {
+        console.log(46, res.data)
         setData(res.data.payload);
         setLoading(false);
       })
@@ -90,14 +104,14 @@ function AdminDashboard() {
           <img src={totalOrderIcon} />
             <p>Feedback Received</p>
           </div>
-          {loading ? <p>...loading</p> : <p>{data?.storeCount}</p>}
+          {loading ? <p>...loading</p> : <p>{parseInt(data[0]?.count) + parseInt(data[1]?.count) + parseInt(data[2]?.count)}</p>}
         </div>
         <div className={styles.singleCard}>
           <div className={styles.cardImageBox}>
             <img src={totalOrderIcon} />
             <p>Most Common Feedback</p>
           </div>
-          {loading ? <p>...loading</p> : <p>{data?.orderCount}</p>}
+          {loading ? <p>...loading</p> : <p>{data[0]?.feedback_type}</p>}
         </div>
       </div>
     </div>

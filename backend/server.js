@@ -14,7 +14,7 @@ app.listen(port, () => {
 });
 
 const routes = require('./app/routes/index')
-app.use("/api/v1", routes);
+app.use("/api", routes);
 
 app.get('/', (req, res) => {
     return res.status(200).json({status : true, message : 'Welcome to dizivan assignment backend'})

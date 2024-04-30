@@ -32,6 +32,10 @@ const FeedbackFormMaster = sequelize.define('feedback_form_master', {
     type: DataTypes.STRING(50),
     allowNull: true,
   },
+  is_active : {
+    type : DataTypes.INTEGER,
+    allowNull : true
+  },
   created_by: {
     type: DataTypes.STRING(60),
     allowNull: true

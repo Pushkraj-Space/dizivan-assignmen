@@ -1,14 +1,15 @@
 import styles from "./AdminNav.module.css";
 import adminImage from "../../img/adminImage.png";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { setFilters } from "../../features/admin/adminSlice";
+import axios from "axios";
+import QRCode from "qrcode.react";
+
+const URL = `${import.meta.env.VITE_APP_API_URL}/api`;
 
 function AdminNav() {
   const [showProfile, setShowProfile] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
-  const navigate = useNavigate();
+  const [imgLink, setImgLink] = useState(null);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -21,26 +22,22 @@ function AdminNav() {
     }
     document.addEventListener("click", handleClickOutside);
 
-    function handleFilterClickOutside(event) {
-      if (
-        !event.target.closest(".filter") &&
-        !event.target.closest("#filterCard")
-      ) {
-        setShowFilter(false);
-      }
-    }
-    document.addEventListener("click", handleFilterClickOutside);
-
     return () => {
       document.removeEventListener("click", handleClickOutside);
-      document.removeEventListener("click", handleFilterClickOutside);
     };
   }, [showProfile, showFilter]);
 
-  const handleLogout = () => {
-    localStorage.removeItem("adminToken");
-    localStorage.removeItem("adminMobile");
-    navigate("/admin/login");
+  useEffect(() => {
+    axios
+      .get(`${URL}/qr/link`)
+      .then((res) => {
+        setImgLink(res.payload.img_link);
+      })
+      .catch((err) => console.log(err));
+  })
+
+  const generateQRCode = () => {
+      return window?.location?.origin + '/feedback-form';
   };
 
   return (
@@ -50,8 +47,8 @@ function AdminNav() {
       </div>
       {showProfile && (
         <div className={styles.logOutBox} id="profileCard">
-          <p>{localStorage.getItem("adminMobile")} </p>
-          <div onClick={handleLogout}>LogOut</div>
+          <p>Feedback Form QR Code</p>
+          <QRCode value={generateQRCode()} size={200} />
         </div>
       )}
     </div>
