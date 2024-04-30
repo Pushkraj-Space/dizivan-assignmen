@@ -1,5 +1,4 @@
 import styles from "./AdminNav.module.css";
-import adminBell from "../../img/filterIcon.png";
 import adminImage from "../../img/adminImage.png";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";

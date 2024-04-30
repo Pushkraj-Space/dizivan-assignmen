@@ -1,6 +1,6 @@
 import styles from "./OrderDetails.module.css";
 import leftArrow from "../../img/leftArrow.svg";
-import shareIcon from "../../img/shareIcon.png";
+// import shareIcon from "../../img/shareIcon.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import {
@@ -43,7 +43,7 @@ function OrderDetails(props) {
         </div>
         <div className={styles.rightHeading}>
           <div>
-            <img src={shareIcon} />
+            {/* <img src={shareIcon} /> */}
           </div>
           <div>Print</div>
         </div>

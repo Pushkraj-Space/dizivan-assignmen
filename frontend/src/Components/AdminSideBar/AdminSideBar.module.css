@@ -16,11 +16,17 @@
 .imageBox {
     height: 130px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    /* line-height: 1.2; */
+    font-size: 26px;
 }
 
-.imageBox>img {
+/* .imageBox>img {
     margin-top: 35px;
-}
+} */
 
 .general {
     height: 200px;
