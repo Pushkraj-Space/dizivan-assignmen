@@ -1,0 +1,169 @@
+.container p {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin: 80px 0 0 230px;
+    padding: 30px 50px 110px 50px;
+    background: #F8F8F8;
+}
+
+.columnHeading {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    padding-top: 17px;
+    border: 2px solid #D9D9D9;
+}
+
+.columnHeading>div {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.columnHeading>div>p {
+    color: #808080;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px;
+    letter-spacing: -0.408px;
+}
+
+.main {
+    border-left: 2px solid #D9D9D9;
+    border-right: 2px solid #D9D9D9;
+    margin-bottom: 30px;
+}
+
+.rowBox {
+    display: flex;
+    padding: 21px 0 15px 0;
+    border-bottom: 2px solid #D9D9D9;
+}
+
+.rowBox p {
+    width: 100%;
+    color: #000;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: -0.408px;
+}
+
+.rowBox p:first-child {
+    text-decoration: underline;
+    color: #06038D;
+    cursor: pointer;
+}
+
+.operations {
+    margin-bottom: 31px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dropdown {
+    width: 175px;
+    height: 30px;
+    padding-left: 15px;
+    border-radius: 4px;
+    border: 1px solid #D9D9D9;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.1px;
+    margin-top: 4px;
+}
+
+.rightBox {
+    display: flex;
+    align-items: center;
+}
+
+.rightBox>div {
+    cursor: pointer;
+}
+
+.filterBox {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #D9D9D9;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.createOrder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #06038D;
+    width: 140px;
+    height: 35px;
+    margin-left: 30px;
+    border-radius: 4px;
+}
+
+.createOrder p {
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+.paginationBox {
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 3px;
+}
+
+.paginationBox>div {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.paginationBox p {
+    text-align: center;
+    font-family: Poppins;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.4px;
+}
+
+.selected {
+    background: #06038D;
+    color: white;
+}
+
+.notSelected {
+    border: 1px solid rgba(0, 0, 0, 0.10);
+    color: rgba(128, 128, 128, 0.50);
+    background: rgba(6, 3, 141, 0.05);
+}
+
+.skeletion {
+    padding: 21px 0 15px 0;
+    border-bottom: 2px solid #D9D9D9;
+}

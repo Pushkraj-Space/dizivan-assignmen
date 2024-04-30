@@ -1,0 +1,86 @@
+.container {
+    margin: 80px 0 0 230px;
+    padding: 30px 0 0 50px;
+    background: #F8F8F8;
+    min-height: 88vh;
+}
+
+.container p {
+    margin: 0;
+    padding: 0;
+}
+
+.tabsContainer {
+    background: #8080804D;
+    width: 320px;
+    border-radius: 25px;
+    height: 35px;
+    display: flex;
+}
+
+.tabsContainer>P {
+    width: 80px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.selected {
+    background: #06038D;
+    color: #FFF;
+}
+
+.notSelected {
+    color: #5A5A5A;
+}
+
+.cardContainer {
+    display: flex;
+    margin-top: 20px;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.cardContainer>div {
+    height: 100px;
+    background: white;
+    min-width: 250px;
+    border-radius: 5px;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+    padding: 21px 0 0 22px;
+}
+
+.cardImageBox {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.cardImageBox>p {
+    color: #5A5A5A;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0.5px;
+}
+
+.singleCard>p {
+    color: #000;
+    font-family: Poppins;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: 0.25px;
+}
