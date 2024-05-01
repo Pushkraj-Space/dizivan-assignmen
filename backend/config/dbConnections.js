@@ -11,7 +11,7 @@ sequelize
   .then(() => console.log("Connected to database"))
    .catch((err) => console.error("Connection error", err.stack));
    
-sequelize.sync({ force : false})
+sequelize.sync({ force : false  })
     .then(() => {
         console.log('Database & tables synced');
     });

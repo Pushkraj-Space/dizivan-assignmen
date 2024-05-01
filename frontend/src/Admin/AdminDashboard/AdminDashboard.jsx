@@ -61,7 +61,22 @@ function AdminDashboard() {
       })
       .catch((err) => console.log(err));
   };
+  const getDashboardData = (data, For) => {
+    if(For == 'Type'){
+      if(data.length > 0){
+        return data[0].feedback_type
+      }
+    }else if(For == 'Count'){
+      let cnt = 0;
+      for(let i=0; i<data.length; i++){
+        cnt += parseInt(data[i].count)
+      }
+      return cnt;
+    }else{
+      return 'No Data Found'
+    }
 
+  }
   return (
     <div className={styles.container}>
       <div className={styles.tabsContainer}>
@@ -104,14 +119,14 @@ function AdminDashboard() {
           <img src={totalOrderIcon} />
             <p>Feedback Received</p>
           </div>
-          {loading ? <p>...loading</p> : <p>{parseInt(data[0]?.count) + parseInt(data[1]?.count) + parseInt(data[2]?.count)}</p>}
+          {loading ? <p>...loading</p> : <p>{getDashboardData(data, 'Count')}</p>}
         </div>
         <div className={styles.singleCard}>
           <div className={styles.cardImageBox}>
             <img src={totalOrderIcon} />
             <p>Most Common Feedback</p>
           </div>
-          {loading ? <p>...loading</p> : <p>{data[0]?.feedback_type}</p>}
+          {loading ? <p>...loading</p> : <p>{getDashboardData(data, 'Type')}</p>}
         </div>
       </div>
     </div>
